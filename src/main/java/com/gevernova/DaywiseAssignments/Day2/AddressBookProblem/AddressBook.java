@@ -23,5 +23,10 @@ public class AddressBook {
                 }, () -> System.out.println("Contact not found."));
     }
 
+    public void deleteContact(String name) {
+        contactList.removeIf(c -> c.getFirstName().equalsIgnoreCase(name));
+    }
+
+
 
 }

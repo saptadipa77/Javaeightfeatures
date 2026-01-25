@@ -12,6 +12,8 @@ public class Main {
 
             System.out.println("1. Add Contact to Book");
             System.out.println("2.Edit Contact");
+            System.out.println("3.Delete Contact");
+
 
             Scanner sc = new Scanner(System.in);
             int choice = sc.nextInt();
@@ -46,6 +48,13 @@ public class Main {
                     firstName = sc.next();
                     obj.editContact(firstName, sc);
                 }
+
+                case 3:{
+                    String firstName;
+                    firstName = sc.next();
+                    obj.deleteContact(firstName);
+                }
+
 
                 default: {
                     System.out.println("Invalid choice.");
