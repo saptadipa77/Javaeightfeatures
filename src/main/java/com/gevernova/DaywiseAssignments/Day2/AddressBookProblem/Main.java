@@ -4,6 +4,7 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 public class Main {
+    private static Map<String, AddressBook> addressBookMap = new HashMap<>();
     public static void main(String[] args) {
         System.out.println("Welcome to the address book");
 
@@ -60,6 +61,44 @@ public class Main {
                 case 4:{
                     obj.getContactList();
                 }
+
+                case 5:{
+                    System.out.print("Name: ");
+                    addressBookMap.put(sc.next(), new AddressBook());
+                }
+
+                case 6:{
+
+                    System.out.print("Enter location: ");
+                    String loc = sc.next();
+                    addressBookMap.values().stream()
+                            .flatMap(book -> book.getContactList().stream())
+                            .filter(c -> c.getCity().equalsIgnoreCase(loc) || c.getState().equalsIgnoreCase(loc))
+                            .forEach(System.out::println);
+
+                }
+                case 7:{
+                    Map<String, List<Contact>> cityView = addressBookMap.values().stream()
+                            .flatMap(book -> book.getContactList().stream())
+                            .collect(Collectors.groupingBy(Contact::getCity));
+                    cityView.forEach((city, list) -> System.out.println(city + ": " + list));
+                }
+                case 8:{
+                    System.out.print("Enter location to count: ");
+                    String loc = sc.next();
+                    long count = addressBookMap.values().stream()
+                            .flatMap(book -> book.getContactList().stream())
+                            .filter(c -> c.getCity().equalsIgnoreCase(loc) || c.getState().equalsIgnoreCase(loc))
+                            .count();
+                    System.out.println("Total: " + count);
+                }
+
+                case 9:{
+                    System.out.println("Enter your choice of sorting category");
+                    int ch=sc.nextInt();
+                    obj.sortEntries(ch);
+                }
+
 
 
                 default: {
