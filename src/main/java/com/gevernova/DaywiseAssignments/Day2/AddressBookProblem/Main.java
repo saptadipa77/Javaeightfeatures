@@ -13,6 +13,8 @@ public class Main {
             System.out.println("1. Add Contact to Book");
             System.out.println("2.Edit Contact");
             System.out.println("3.Delete Contact");
+            System.out.println("4.View Contacts in AddressBook");
+
 
 
             Scanner sc = new Scanner(System.in);
@@ -53,6 +55,10 @@ public class Main {
                     String firstName;
                     firstName = sc.next();
                     obj.deleteContact(firstName);
+                }
+
+                case 4:{
+                    obj.getContactList();
                 }
 
 
